@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@types/node": "^18.11.10"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "scripts": {
+    "days": "tsc ./@lib/inputs/days.ts"
+  }
+}
