@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Vect2 = /** @class */ (function () {
     function Vect2(x, y) {
         if (typeof (x) === "string") {
@@ -9,4 +9,4 @@ var Vect2 = /** @class */ (function () {
     }
     return Vect2;
 }());
-exports["default"] = Vect2;
+exports.default = Vect2;

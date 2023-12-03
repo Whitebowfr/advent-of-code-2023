@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMarkerDifferences = exports.getDirectionFromString = exports.getOppositeDirectionMarker = exports.updateCoords = exports.DirectionMarker = void 0;
 var DirectionMarker;
 (function (DirectionMarker) {
@@ -7,7 +7,11 @@ var DirectionMarker;
     DirectionMarker[DirectionMarker["EAST"] = 1] = "EAST";
     DirectionMarker[DirectionMarker["SOUTH"] = 2] = "SOUTH";
     DirectionMarker[DirectionMarker["WEST"] = 3] = "WEST";
-})(DirectionMarker = exports.DirectionMarker || (exports.DirectionMarker = {}));
+    DirectionMarker[DirectionMarker["NORTHWEST"] = 4] = "NORTHWEST";
+    DirectionMarker[DirectionMarker["SOUTHWEST"] = 5] = "SOUTHWEST";
+    DirectionMarker[DirectionMarker["SOUTHEAST"] = 6] = "SOUTHEAST";
+    DirectionMarker[DirectionMarker["NORTHEAST"] = 7] = "NORTHEAST";
+})(DirectionMarker || (exports.DirectionMarker = DirectionMarker = {}));
 function updateCoords(coords, direction) {
     switch (direction) {
         case DirectionMarker.NORTH:
@@ -18,6 +22,14 @@ function updateCoords(coords, direction) {
             return [coords[0], coords[1] + 1];
         case DirectionMarker.WEST:
             return [coords[0] - 1, coords[1]];
+        case DirectionMarker.NORTHEAST:
+            return [coords[0] + 1, coords[1] - 1];
+        case DirectionMarker.NORTHWEST:
+            return [coords[0] - 1, coords[1] - 1];
+        case DirectionMarker.SOUTHEAST:
+            return [coords[0] + 1, coords[1] + 1];
+        case DirectionMarker.SOUTHWEST:
+            return [coords[0] - 1, coords[1] + 1];
     }
 }
 exports.updateCoords = updateCoords;

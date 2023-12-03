@@ -4,17 +4,14 @@ export enum DirectionMarker {
     NORTH,
     EAST,
     SOUTH,
-    WEST
-}
-
-export enum DirectionalDirectionMarker {
+    WEST,
     NORTHWEST,
     SOUTHWEST,
     SOUTHEAST,
     NORTHEAST
 }
 
-export function updateCoords(coords: [number, number], direction: DirectionMarker|DirectionalDirectionMarker): [number, number] {
+export function updateCoords(coords: [number, number], direction: DirectionMarker): [number, number] {
     switch(direction) {
         case DirectionMarker.NORTH:
             return [coords[0], coords[1] - 1]
@@ -24,6 +21,14 @@ export function updateCoords(coords: [number, number], direction: DirectionMarke
             return [coords[0], coords[1] + 1]
         case DirectionMarker.WEST:
             return [coords[0] - 1, coords[1]]
+        case DirectionMarker.NORTHEAST:
+            return [coords[0] + 1, coords[1] - 1]
+        case DirectionMarker.NORTHWEST:
+            return [coords[0] - 1, coords[1] - 1]
+        case DirectionMarker.SOUTHEAST :
+            return [coords[0] + 1, coords[1] + 1]
+        case DirectionMarker.SOUTHWEST :
+            return [coords[0] - 1, coords[1] + 1]
     }
 }
 

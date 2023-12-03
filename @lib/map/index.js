@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Map2D = void 0;
 var vectors_1 = require("../vectors");
 var Map2D = /** @class */ (function () {
@@ -25,16 +25,17 @@ var Map2D = /** @class */ (function () {
             if (coordsY) {
                 return this.grid[coordsY][coords];
             }
+            return;
         }
-        else {
+        if (this.areCoordsInMap(coords)) {
             return this.grid[coords[1]][coords[0]];
         }
+        return;
     };
     Map2D.prototype.getNextElement = function (coords, direction) {
         switch (direction) {
             case vectors_1.DirectionMarker.NORTH:
                 if (coords[1] - 1 >= 0) {
-                    console.log(this.getElement(coords[0], coords[1] - 1), "");
                     return this.getElement(coords[0], coords[1] - 1);
                 }
                 return;
@@ -56,7 +57,12 @@ var Map2D = /** @class */ (function () {
         }
     };
     Map2D.prototype.setElement = function (coords, value) {
-        this.grid[coords[1]][coords[0]] = value;
+        if (this.areCoordsInMap(coords)) {
+            this.grid[coords[1]][coords[0]] = value;
+        }
+    };
+    Map2D.prototype.areCoordsInMap = function (coords) {
+        return coords[0] >= 0 && coords[1] >= 0 && coords[0] < this.size[0] && coords[1] < this.size[1];
     };
     Map2D.prototype.fillGrid = function (value) {
         if (typeof value === "object" && value.length === this.size[1] && value[0].length === this.size[0]) {

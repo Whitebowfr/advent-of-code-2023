@@ -1,4 +1,4 @@
-import { DirectionMarker } from "../vectors";
+import { DirectionMarker, coords } from "../vectors";
 
 export class Map2D {
     grid: any[][];
@@ -21,22 +21,24 @@ export class Map2D {
         }
     }
 
-    getElement(coords: number|[number, number], coordsY?: number) {
+    getElement(coords: number | [number, number], coordsY?: number) {
         if (typeof coords === "number") {
             if (coordsY) {
                 return this.grid[coordsY][coords]
             }
-        } else {
+            return
+        }
+        if (this.areCoordsInMap(coords)) {
             return this.grid[coords[1]][coords[0]]
         }
+        return
+
     }
 
     getNextElement(coords: [number, number], direction: DirectionMarker) {
         switch (direction) {
             case DirectionMarker.NORTH:
                 if (coords[1] - 1 >= 0) {
-                    console.log(this.getElement(coords[0], coords[1] - 1)"")
-
                     return this.getElement(coords[0], coords[1] - 1)
                 }
                 return
@@ -59,10 +61,16 @@ export class Map2D {
     }
 
     setElement(coords: [number, number], value: any) {
-        this.grid[coords[1]][coords[0]] = value
+        if (this.areCoordsInMap(coords)) {
+            this.grid[coords[1]][coords[0]] = value
+        }
     }
 
-    fillGrid(value: any|any[][]) {
+    areCoordsInMap(coords: coords): boolean {
+        return coords[0] >= 0 && coords[1] >= 0 && coords[0] < this.size[0] && coords[1] < this.size[1]
+    }
+
+    fillGrid(value: any | any[][]) {
         if (typeof value === "object" && value.length === this.size[1] && value[0].length === this.size[0]) {
             for (let index = 0; index < this.size[1]; index++) {
                 const element = this.grid[index];
