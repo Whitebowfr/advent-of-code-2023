@@ -3,7 +3,8 @@ import { day4, getCommonItems, sum } from "./@lib";
 function parseScratchCards(data: string) {
     return data.split("\n").map(x => {
         return {
-            winningNumbers: x.split(" |")[0].split(": ")[1].replaceAll("  ", " ").split(" ").map(y => parseInt(y)),
+            // Regex explanation : get all numbers between a : and a |
+            winningNumbers: x.match(/(?:\:)([0-9]| )* \|/g)![0].match(/[0-9]+/g)!.map(y => parseInt(y)),
             numbersYouHave: x.split("| ")[1].replaceAll("  ", " ").split(" ").map(y => parseInt(y)),
             numberOfCards: 1
         }
