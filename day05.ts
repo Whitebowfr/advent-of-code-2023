@@ -89,32 +89,6 @@ function searchForMinimumSeed(seeds: number[], parsedCategories: {[id: string]: 
     for (let i = Math.max(lowestSeed[0] - 5000, intervalIncludingSeedFound[0]); i < Math.min(lowestSeed[0] + 5000, intervalIncludingSeedFound[1]); i++) {
         seedsToScan.push(i)
     }
-    // while (c >= 1) {
-    //     let seedsToScan = []
-    //     if (lowestSeed[0] == -1) {
-    //         for (let i = 0; i < seeds.length; i += 2) {
-    //             let currentVal = seeds[i]
-    //             while (currentVal < seeds[i] + seeds[i+1]) {
-    //                 seedsToScan.push(currentVal)
-    //                 currentVal += c
-    //             }
-    //         }
-    //     } else {
-    //         for (let i = 0; i < seeds.length; i += 2) {
-    //             if (isBetween(lowestSeed[0], seeds[i], seeds[i] + seeds[i+1])) {
-    //                 let currentVal = Math.max(lowestSeed[0] - 100 * c, seeds[i])
-    //                 while (currentVal < Math.min(lowestSeed[0] + 100 * c, seeds[i] + seeds[i+1])) {
-    //                     seedsToScan.push(currentVal)
-    //                     currentVal += c
-    //                 }
-    //             }
-    //         } 
-    //     }
-    //     let currentStepLowestSeed = getSeedWithLowestLocation(seedsToScan, parsedCategories)
-    //     if (currentStepLowestSeed[1] < lowestSeed[1]) lowestSeed = currentStepLowestSeed
-    //     console.log(lowestSeed, c)
-    //     c /= 1000
-    // }
     console.log(getSeedWithLowestLocation(seedsToScan, parsedCategories))
 }
 
@@ -131,12 +105,10 @@ function getSeedWithLowestLocation(seeds: number[], parsedCategories: { [id: str
                 }
             }
         }
-        // out += ogSeed + "," + seed + "\n"
         if (seed < currentLowestLocation[1]) {
             currentLowestLocation = [ogSeed, seed]
         }
     }
-    // writeFileSync("./test.txt", out)
     return currentLowestLocation
 }
 
