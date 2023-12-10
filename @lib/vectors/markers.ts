@@ -8,7 +8,8 @@ export enum DirectionMarker {
     NORTHWEST,
     SOUTHWEST,
     SOUTHEAST,
-    NORTHEAST
+    NORTHEAST,
+    NONE
 }
 
 export function updateCoords(coords: [number, number], direction: DirectionMarker): [number, number] {
@@ -29,6 +30,8 @@ export function updateCoords(coords: [number, number], direction: DirectionMarke
             return [coords[0] + 1, coords[1] + 1]
         case DirectionMarker.SOUTHWEST :
             return [coords[0] - 1, coords[1] + 1]
+        case DirectionMarker.NONE :
+            return coords
     }
 }
 

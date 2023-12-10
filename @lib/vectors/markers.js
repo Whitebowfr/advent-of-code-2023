@@ -11,6 +11,7 @@ var DirectionMarker;
     DirectionMarker[DirectionMarker["SOUTHWEST"] = 5] = "SOUTHWEST";
     DirectionMarker[DirectionMarker["SOUTHEAST"] = 6] = "SOUTHEAST";
     DirectionMarker[DirectionMarker["NORTHEAST"] = 7] = "NORTHEAST";
+    DirectionMarker[DirectionMarker["NONE"] = 8] = "NONE";
 })(DirectionMarker || (exports.DirectionMarker = DirectionMarker = {}));
 function updateCoords(coords, direction) {
     switch (direction) {
@@ -30,6 +31,8 @@ function updateCoords(coords, direction) {
             return [coords[0] + 1, coords[1] + 1];
         case DirectionMarker.SOUTHWEST:
             return [coords[0] - 1, coords[1] + 1];
+        case DirectionMarker.NONE:
+            return coords;
     }
 }
 exports.updateCoords = updateCoords;

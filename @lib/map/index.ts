@@ -1,4 +1,4 @@
-import { DirectionMarker, coords } from "../vectors";
+import { DirectionMarker, coords, updateCoords } from "../vectors";
 
 export class Map2D {
     grid: any[][];
@@ -33,6 +33,15 @@ export class Map2D {
         }
         return
 
+    }
+
+    getCoordsByValue(value: any): coords {
+        let coords: coords = [-1, -1]
+        this.grid.forEach((line, yIndex) => {
+            let xIndex = line.indexOf(value)
+            if (xIndex != -1) coords = [xIndex, yIndex]
+        })
+        return coords
     }
 
     getNextElement(coords: [number, number], direction: DirectionMarker) {
@@ -86,5 +95,13 @@ export class Map2D {
                 }
             }
         }
+    }
+
+    getNeighbours(coords: any): [any, any, any, any] {
+        return [this.getElement(updateCoords(coords, DirectionMarker.NORTH)), this.getElement(updateCoords(coords, DirectionMarker.EAST)), this.getElement(updateCoords(coords, DirectionMarker.SOUTH)), this.getElement(updateCoords(coords, DirectionMarker.WEST))]
+    }
+
+    getGridAsString() {
+        return this.grid.map(x => x.join("")).join("\n")
     }
 }

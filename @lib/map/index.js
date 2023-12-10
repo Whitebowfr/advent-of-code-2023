@@ -32,6 +32,15 @@ var Map2D = /** @class */ (function () {
         }
         return;
     };
+    Map2D.prototype.getCoordsByValue = function (value) {
+        var coords = [-1, -1];
+        this.grid.forEach(function (line, yIndex) {
+            var xIndex = line.indexOf(value);
+            if (xIndex != -1)
+                coords = [xIndex, yIndex];
+        });
+        return coords;
+    };
     Map2D.prototype.getNextElement = function (coords, direction) {
         switch (direction) {
             case vectors_1.DirectionMarker.NORTH:
@@ -81,6 +90,12 @@ var Map2D = /** @class */ (function () {
                 }
             }
         }
+    };
+    Map2D.prototype.getNeighbours = function (coords) {
+        return [this.getElement((0, vectors_1.updateCoords)(coords, vectors_1.DirectionMarker.NORTH)), this.getElement((0, vectors_1.updateCoords)(coords, vectors_1.DirectionMarker.EAST)), this.getElement((0, vectors_1.updateCoords)(coords, vectors_1.DirectionMarker.SOUTH)), this.getElement((0, vectors_1.updateCoords)(coords, vectors_1.DirectionMarker.WEST))];
+    };
+    Map2D.prototype.getGridAsString = function () {
+        return this.grid.map(function (x) { return x.join(""); }).join("\n");
     };
     return Map2D;
 }());
