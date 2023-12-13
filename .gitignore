@@ -1,2 +1,4 @@
 node_modules/*
 test.txt
+@lib/inputs/days.js
+@lib/inputs/days.ts
